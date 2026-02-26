@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Aeroporto Inteligente - Meu Voo</title>
+    <!-- Conectando o arquivo CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="painel">
+        <h1>Terminal de Voo</h1>
+        
+        <!-- A imagem do nosso avião -->
+        <img id="img-aviao" src="aviao1.avif" alt="Avião Comercial">
+
+        <!-- Onde as informações do Voo vão aparecer -->
+        <div id="info-voo">
+            <p><strong>Código:</strong> <span id="txt-codigo">---</span></p>
+            <p><strong>Origem:</strong> <span id="txt-origem">---</span></p>
+            <p><strong>Destino:</strong> <span id="txt-destino">---</span></p>
+            <p><strong>Status:</strong> <span id="txt-status" class="no-solo">No Solo</span></p>
+            <p><strong>Altitude:</strong> <span id="txt-altitude">0</span> metros</p>
+        </div>
+
+        <!-- Nossos botões de controle -->
+        <div class="controles">
+            <button id="btn-decolar">Decolar</button>
+            <button id="btn-pousar">Pousar</button>
+            <button id="btn-subir">Ganhar Altitude (Atualizar Status)</button>
+        </div>
+    </div>
+
+    <!-- Conectando o arquivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
