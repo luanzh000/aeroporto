@@ -1,62 +1,21 @@
-// CLASSE COM ENCAPSULAMENTO
-class VooSeguro {
-    #codigo;
-    #combustivel;
-
-    constructor(codigoPassado) {
-        this.#codigo = codigoPassado;
-        this.#combustivel = 100;
-    }
-
-    // GETTER: Janelinha segura para ler o valor formatado
-    get lerCombustivel() {
-        return `Combustível: ${this.#combustivel}%`;
-    }
-
-    // SETTER: Porta segura para alterar o combustível (Regras de abastecimento)
-    set abastecer(quantidade) {
-        if (this.#combustivel + quantidade > 100) {
-            alert("Limite atingido! O tanque não pode passar de 100%.");
-        } else {
-            this.#combustivel += quantidade;
+// Voo.js
+class Voo {
+    constructor(codigo, origem, destino) {
+        // Validação de Dados: Se a origem for igual ao destino, lançamos uma "bomba" (erro)
+        if (origem.toLowerCase() === destino.toLowerCase()) {
+            throw new Error(`Operação Negada: O voo ${codigo} não pode decolar e pousar no mesmo local (${origem}).`);
         }
-    }
 
-    // DESAFIO: Método seguro para gastar combustível
-    gastarCombustivel(quantidade) {
-        if (this.#combustivel - quantidade < 0) {
-            alert("ALERTA: Combustível insuficiente para esta manobra!");
-        } else {
-            this.#combustivel -= quantidade;
+        // Validação de código vazio
+        if (!codigo || codigo.trim() === "") {
+            throw new Error("Erro de Segurança: Todo voo precisa de um código identificador.");
         }
-    }
 
-    get codigo() {
-        return this.#codigo;
+        this.codigo = codigo;
+        this.origem = origem;
+        this.destino = destino;
     }
 }
 
-// INICIALIZANDO O VOO
-const meuVoo = new VooSeguro("VIP-001");
-
-// CAPTURANDO ELEMENTOS DO DOM
-const displayCombustivel = document.getElementById("painelCombustivel");
-const displayCodigo = document.getElementById("codigoVooDisplay");
-const btnAbastecer = document.getElementById("btnAbastecerSeguro");
-const btnGastar = document.getElementById("btnGastar");
-
-// Exibindo dados iniciais
-displayCodigo.innerText = `Voo: ${meuVoo.codigo}`;
-displayCombustivel.innerText = meuVoo.lerCombustivel;
-
-// LÓGICA DO BOTÃO ABASTECER
-btnAbastecer.onclick = function() {
-    meuVoo.abastecer = 10; // Usando o Setter
-    displayCombustivel.innerText = meuVoo.lerCombustivel; // Atualizando a tela via Getter
-};
-
-// LÓGICA DO BOTÃO GASTAR (DESAFIO)
-btnGastar.onclick = function() {
-    meuVoo.gastarCombustivel(15); // Método seguro
-    displayCombustivel.innerText = meuVoo.lerCombustivel; // Atualizando a tela via Getter
-};
+// "Liberando a saída" da classe para ser usada no painel.js
+export default Voo;

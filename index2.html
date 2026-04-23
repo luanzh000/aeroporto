@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Torre de Controle - Aeroporto Inteligente</title>
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="script.js">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛫 Registro de Voos</h1>
+            <p>Protocolos de Emergência Ativos</p>
+        </div>
+
+        <div class="form-container">
+            <div class="form-group">
+                <label>Código do Voo:</label>
+                <input type="text" id="codigoVoo" placeholder="Ex: G3-100">
+            </div>
+
+            <div class="form-group">
+                <label>Cidade de Origem:</label>
+                <input type="text" id="origem" placeholder="Ex: São Paulo">
+            </div>
+
+            <div class="form-group">
+                <label>Cidade de Destino:</label>
+                <input type="text" id="destino" placeholder="Ex: Curitiba">
+            </div>
+
+            <button class="btn-registrar" onclick="registrarVoo()">🚀 Registrar Voo</button>
+
+            <div id="avisoSistema">Aguardando dados...</div>
+        </div>
+    </div>
+
+    <script type="module" src="painel.js">
+// Importando a classe do outro arquivo
+import Voo from './Voo.js';
+
+// Função que será chamada pelo botão no HTML
+window.registrarVoo = function() {
+    const campoCodigo = document.getElementById("codigoVoo");
+    const campoOrigem = document.getElementById("origem");
+    const campoDestino = document.getElementById("destino");
+    const avisoSistema = document.getElementById("avisoSistema");
+
+    // Limpando estilos anteriores
+    avisoSistema.className = "";
+
+    // 🚨 FASE 3: A Equipe de Resgate (Try / Catch)
+    try {
+        console.log("Iniciando tentativa de registro...");
+
+        // Tenta criar o objeto Voo. Se os dados forem inválidos, o construtor lança o Error.
+        const novoVoo = new Voo(
+            campoCodigo.value, 
+            campoOrigem.value, 
+            campoDestino.value
+        );
+
+        // Se chegar aqui, significa que não houve erro no 'new Voo'
+        avisoSistema.innerText = `Sucesso! Voo ${novoVoo.codigo} registrado para ${novoVoo.destino}.`;
+        avisoSistema.classList.add("sucesso");
+
+        // Limpa os campos para o próximo registro
+        campoCodigo.value = "";
+        campoOrigem.value = "";
+        campoDestino.value = "";
+
+    } catch (erro) {
+        // Se qualquer erro ocorrer dentro do bloco TRY, o código pula para cá imediatamente
+        console.error("Resgate acionado:", erro.message);
+        
+        avisoSistema.innerText = erro.message; // Exibe a mensagem personalizada do throw
+        avisoSistema.classList.add("erro");
+
+    } finally {
+        // Executa sempre, independente de sucesso ou erro
+        console.log("Processo de registro finalizado.");
+    }
+};
+    </script>
+</body>
+</html>

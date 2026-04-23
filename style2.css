@@ -1,0 +1,236 @@
+/* ========================================
+   🛫 AEROPORTO INTELIGENTE - CSS PROFISSIONAL
+   ======================================== */
+
+/* RESET E BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* CABEÇALHO */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.header p {
+    color: #b0bec5;
+    font-size: 1.1rem;
+}
+
+/* FORMULÁRIO */
+.form-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.3),
+        0 0 0 1px rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* CAMPOS DE INPUT */
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #e1e8ed;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #fafbfc;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4ecdc4;
+    box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
+    background: white;
+    transform: translateY(-2px);
+}
+
+/* BOTÃO */
+.btn-registrar {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-registrar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+}
+
+.btn-registrar:active {
+    transform: translateY(-1px);
+}
+
+/* EFEITO DE LOADING */
+.btn-registrar.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.btn-registrar.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* MENSAGEM DE STATUS */
+#avisoSistema {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* SUCESSO */
+.sucesso {
+    background: linear-gradient(45deg, #56ab2f, #a8e6cf);
+    color: #2d5a27;
+    border: 2px solid #56ab2f;
+    animation: sucessoAnim 0.6s ease;
+}
+
+.sucesso::before {
+    content: "✅";
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+/* ERRO */
+.erro {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: white;
+    border: 2px solid #ff416c;
+    animation: erroAnim 0.6s ease;
+}
+
+.erro::before {
+    content: "🚨";
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+/* PRONTO */
+.pronto {
+    background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    border: 2px solid #f093fb;
+}
+
+/* ANIMAÇÕES */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes sucessoAnim {
+    0% { transform: scale(0.9) rotate(-5deg); opacity: 0; }
+    50% { transform: scale(1.05) rotate(2deg); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes erroAnim {
+    0% { transform: scale(0.9) rotate(5deg); opacity: 0; }
+    25% { transform: scale(1.1) rotate(-3deg); }
+    50% { transform: scale(0.95) rotate(3deg); }
+    75% { transform: scale(1.05) rotate(-1deg); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+        margin: 20px 10px;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .form-container {
+        padding: 30px 25px;
+    }
+}
+
+/* EFEITO DE AVIÃO (OPCIONAL) */
+@keyframes voando {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+.form-container.sucesso {
+    animation: voando 2s ease-in-out infinite;
+}
